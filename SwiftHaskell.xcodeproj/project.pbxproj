@@ -1,0 +1,365 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BFABC4321E4BE794006036C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFABC4311E4BE794006036C6 /* AppDelegate.swift */; };
+		BFABC4341E4BE794006036C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFABC4331E4BE794006036C6 /* Assets.xcassets */; };
+		BFABC4371E4BE794006036C6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFABC4351E4BE794006036C6 /* MainMenu.xib */; };
+		BFABC4C31E4C26C8006036C6 /* libswifthaskell.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BFABC4C21E4C26C8006036C6 /* libswifthaskell.dylib */; };
+		BFABC4C61E4C26DF006036C6 /* libHSrts_thr-ghc8.0.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BFABC4C51E4C26DF006036C6 /* libHSrts_thr-ghc8.0.1.dylib */; };
+		BFABC4C81E4C26E2006036C6 /* libffi.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BFABC4C71E4C26E2006036C6 /* libffi.dylib */; };
+		BFABC4C91E4C2746006036C6 /* libswifthaskell.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = BFABC4C21E4C26C8006036C6 /* libswifthaskell.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		BFABC4CA1E4C2746006036C6 /* libffi.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = BFABC4C71E4C26E2006036C6 /* libffi.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		BFABC4CB1E4C2746006036C6 /* libHSrts_thr-ghc8.0.1.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = BFABC4C51E4C26DF006036C6 /* libHSrts_thr-ghc8.0.1.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BFABC44B1E4C1BFA006036C6 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BFABC4C91E4C2746006036C6 /* libswifthaskell.dylib in CopyFiles */,
+				BFABC4CA1E4C2746006036C6 /* libffi.dylib in CopyFiles */,
+				BFABC4CB1E4C2746006036C6 /* libHSrts_thr-ghc8.0.1.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		BFABC42E1E4BE794006036C6 /* SwiftHaskell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftHaskell.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFABC4311E4BE794006036C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		BFABC4331E4BE794006036C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BFABC4361E4BE794006036C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		BFABC4381E4BE794006036C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFABC4461E4C011B006036C6 /* SwiftHaskell-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftHaskell-Bridging-Header.h"; sourceTree = "<group>"; };
+		BFABC4C21E4C26C8006036C6 /* libswifthaskell.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libswifthaskell.dylib; path = build/libswifthaskell.dylib; sourceTree = "<group>"; };
+		BFABC4C51E4C26DF006036C6 /* libHSrts_thr-ghc8.0.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libHSrts_thr-ghc8.0.1.dylib"; path = "build/libHSrts_thr-ghc8.0.1.dylib"; sourceTree = "<group>"; };
+		BFABC4C71E4C26E2006036C6 /* libffi.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libffi.dylib; path = build/libffi.dylib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BFABC42B1E4BE794006036C6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFABC4C31E4C26C8006036C6 /* libswifthaskell.dylib in Frameworks */,
+				BFABC4C81E4C26E2006036C6 /* libffi.dylib in Frameworks */,
+				BFABC4C61E4C26DF006036C6 /* libHSrts_thr-ghc8.0.1.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BFABC4251E4BE794006036C6 = {
+			isa = PBXGroup;
+			children = (
+				BFABC4301E4BE794006036C6 /* SwiftHaskell */,
+				BFABC4C41E4C26CA006036C6 /* Libraries */,
+				BFABC42F1E4BE794006036C6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BFABC42F1E4BE794006036C6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BFABC42E1E4BE794006036C6 /* SwiftHaskell.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BFABC4301E4BE794006036C6 /* SwiftHaskell */ = {
+			isa = PBXGroup;
+			children = (
+				BFABC4311E4BE794006036C6 /* AppDelegate.swift */,
+				BFABC4461E4C011B006036C6 /* SwiftHaskell-Bridging-Header.h */,
+				BFABC4331E4BE794006036C6 /* Assets.xcassets */,
+				BFABC4351E4BE794006036C6 /* MainMenu.xib */,
+				BFABC4381E4BE794006036C6 /* Info.plist */,
+			);
+			path = SwiftHaskell;
+			sourceTree = "<group>";
+		};
+		BFABC4C41E4C26CA006036C6 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				BFABC4C21E4C26C8006036C6 /* libswifthaskell.dylib */,
+				BFABC4C71E4C26E2006036C6 /* libffi.dylib */,
+				BFABC4C51E4C26DF006036C6 /* libHSrts_thr-ghc8.0.1.dylib */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BFABC42D1E4BE794006036C6 /* SwiftHaskell */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BFABC43B1E4BE794006036C6 /* Build configuration list for PBXNativeTarget "SwiftHaskell" */;
+			buildPhases = (
+				BFABC42A1E4BE794006036C6 /* Sources */,
+				BFABC42B1E4BE794006036C6 /* Frameworks */,
+				BFABC42C1E4BE794006036C6 /* Resources */,
+				BFABC44B1E4C1BFA006036C6 /* CopyFiles */,
+				BFABC4441E4BFEA3006036C6 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftHaskell;
+			productName = SwiftHaskell;
+			productReference = BFABC42E1E4BE794006036C6 /* SwiftHaskell.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFABC4261E4BE794006036C6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = nanotech;
+				TargetAttributes = {
+					BFABC42D1E4BE794006036C6 = {
+						CreatedOnToolsVersion = 8.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = BFABC4291E4BE794006036C6 /* Build configuration list for PBXProject "SwiftHaskell" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BFABC4251E4BE794006036C6;
+			productRefGroup = BFABC42F1E4BE794006036C6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BFABC42D1E4BE794006036C6 /* SwiftHaskell */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BFABC42C1E4BE794006036C6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFABC4341E4BE794006036C6 /* Assets.xcassets in Resources */,
+				BFABC4371E4BE794006036C6 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		BFABC4441E4BFEA3006036C6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(PROJECT_DIR)/src/Lib.hs",
+				"$(PROJECT_DIR)/SwiftHaskellLibrary.cabal",
+				"$(PROJECT_DIR)/stack.yaml",
+			);
+			outputPaths = (
+				"$(PROJECT_DIR)/build/libswifthaskell.dylib",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "stack build";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BFABC42A1E4BE794006036C6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFABC4321E4BE794006036C6 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		BFABC4351E4BE794006036C6 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BFABC4361E4BE794006036C6 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BFABC4391E4BE794006036C6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BFABC43A1E4BE794006036C6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+		BFABC43C1E4BE794006036C6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = SwiftHaskell/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.nanotechcorp.SwiftHaskell;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SwiftHaskell/SwiftHaskell-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/build $(PROJECT_DIR)/build/include";
+			};
+			name = Debug;
+		};
+		BFABC43D1E4BE794006036C6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = SwiftHaskell/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.nanotechcorp.SwiftHaskell;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SwiftHaskell/SwiftHaskell-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/build $(PROJECT_DIR)/build/include";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BFABC4291E4BE794006036C6 /* Build configuration list for PBXProject "SwiftHaskell" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BFABC4391E4BE794006036C6 /* Debug */,
+				BFABC43A1E4BE794006036C6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BFABC43B1E4BE794006036C6 /* Build configuration list for PBXNativeTarget "SwiftHaskell" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BFABC43C1E4BE794006036C6 /* Debug */,
+				BFABC43D1E4BE794006036C6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFABC4261E4BE794006036C6 /* Project object */;
+}
