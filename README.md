@@ -89,9 +89,9 @@ And include the Haskell stub header:
 ## Linking
 
 To link our Haskell library into our Swift app, we'll build it
-as a dynamic library and add it to our Xcode project. Building
-a static library is also possible, but currently requires
-[building your own GHC][pic-ghc].
+as a dynamic library and add it to our Xcode project. Building a
+static library is also possible, but currently requires
+[rebuilding the GHC standard libraries][pic-ghc].
 
 [pic-ghc]: https://github.com/lyokha/nginx-haskell-module#static-linkage-against-basic-haskell-libraries
 
