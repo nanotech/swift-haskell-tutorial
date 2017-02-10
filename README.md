@@ -162,23 +162,17 @@ to copy the libraries into the app bundle:
 ## Runtime Setup
 
 Before using functions from Haskell, we'll need to start its
-runtime. `hs_init` takes pointers to C's argc and argv, however
-since we aren't using command line arguments, we can just pass a
-constant array.
+runtime. `hs_init` takes pointers to C's argc and argv. In
+Swift, these are available as `CommandLine.argc` and
+`CommandLine.unsafeArgv`.
 
 Add this to your app delegate's `applicationDidFinishLaunching`
 method:
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        var argv0 = Array("SwiftHaskell".utf8CString)
-        argv0.withUnsafeMutableBufferPointer { argv0bp in
-            var argv = [argv0bp.baseAddress];
-            var argc = CInt(argv.count)
-            argv.withUnsafeMutableBufferPointer { argvbp in
-                var argvp = argvbp.baseAddress
-                hs_init(&argc, &argvp)
-            }
-        }
+        var argc = CommandLine.argc
+        var argv = Optional.some(CommandLine.unsafeArgv)
+        hs_init(&argc, &argv)
     }
 
 And the corresponding `hs_exit` to `applicationWillTerminate`:
@@ -186,8 +180,6 @@ And the corresponding `hs_exit` to `applicationWillTerminate`:
     func applicationWillTerminate(_ aNotification: Notification) {
         hs_exit()
     }
-
-TODO: Explain swift pointer bits.
 
 ## Calling Haskell from Swift
 

@@ -15,15 +15,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var label: NSTextField!
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        var argv0 = Array("SwiftHaskell".utf8CString)
-        argv0.withUnsafeMutableBufferPointer { argv0bp in
-            var argv = [argv0bp.baseAddress];
-            var argc = CInt(argv.count)
-            argv.withUnsafeMutableBufferPointer { argvbp in
-                var argvp = argvbp.baseAddress
-                hs_init(&argc, &argvp)
-            }
-        }
+        var argc = CommandLine.argc
+        var argv = Optional.some(CommandLine.unsafeArgv)
+        hs_init(&argc, &argv)
 
         label.stringValue = "\(square(5))"
     }
