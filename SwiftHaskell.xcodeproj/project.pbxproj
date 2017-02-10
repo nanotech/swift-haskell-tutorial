@@ -7,136 +7,182 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BFABC4321E4BE794006036C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFABC4311E4BE794006036C6 /* AppDelegate.swift */; };
-		BFABC4341E4BE794006036C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFABC4331E4BE794006036C6 /* Assets.xcassets */; };
-		BFABC4371E4BE794006036C6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFABC4351E4BE794006036C6 /* MainMenu.xib */; };
-		BFABC4C31E4C26C8006036C6 /* libswifthaskell.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BFABC4C21E4C26C8006036C6 /* libswifthaskell.dylib */; };
-		BFABC4C61E4C26DF006036C6 /* libHSrts_thr-ghc8.0.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BFABC4C51E4C26DF006036C6 /* libHSrts_thr-ghc8.0.1.dylib */; };
-		BFABC4C81E4C26E2006036C6 /* libffi.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BFABC4C71E4C26E2006036C6 /* libffi.dylib */; };
-		BFABC4C91E4C2746006036C6 /* libswifthaskell.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = BFABC4C21E4C26C8006036C6 /* libswifthaskell.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		BFABC4CA1E4C2746006036C6 /* libffi.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = BFABC4C71E4C26E2006036C6 /* libffi.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		BFABC4CB1E4C2746006036C6 /* libHSrts_thr-ghc8.0.1.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = BFABC4C51E4C26DF006036C6 /* libHSrts_thr-ghc8.0.1.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		BFABC4601E4C1DD1006036C6 /* SwiftAppLibrary.h in Headers */ = {isa = PBXBuildFile; fileRef = BFABC45E1E4C1DD1006036C6 /* SwiftAppLibrary.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BFABC4CD1E4D627E006036C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFABC4CC1E4D627E006036C6 /* AppDelegate.swift */; };
+		BFABC4D21E4D664D006036C6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFABC4D01E4D664D006036C6 /* MainMenu.xib */; };
+		BFABC4E01E4D781D006036C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFABC4DF1E4D781D006036C6 /* Assets.xcassets */; };
+		BFABC4ED1E4D78E5006036C6 /* SwiftHaskell in CopyFiles */ = {isa = PBXBuildFile; fileRef = BFABC4EA1E4D78D9006036C6 /* SwiftHaskell */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		BFABC4F01E4D7951006036C6 /* SwiftAppLibrary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BFABC45B1E4C1DD1006036C6 /* SwiftAppLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		BFABC4E81E4D7842006036C6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFABC4521E4C1DD1006036C6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BFABC45A1E4C1DD1006036C6;
+			remoteInfo = SwiftAppLibrary;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
-		BFABC44B1E4C1BFA006036C6 /* CopyFiles */ = {
+		BFABC4EC1E4D78DF006036C6 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				BFABC4ED1E4D78E5006036C6 /* SwiftHaskell in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BFABC4EF1E4D7948006036C6 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				BFABC4C91E4C2746006036C6 /* libswifthaskell.dylib in CopyFiles */,
-				BFABC4CA1E4C2746006036C6 /* libffi.dylib in CopyFiles */,
-				BFABC4CB1E4C2746006036C6 /* libHSrts_thr-ghc8.0.1.dylib in CopyFiles */,
+				BFABC4F01E4D7951006036C6 /* SwiftAppLibrary.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		BFABC42E1E4BE794006036C6 /* SwiftHaskell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftHaskell.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		BFABC4311E4BE794006036C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BFABC4331E4BE794006036C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		BFABC4361E4BE794006036C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		BFABC4381E4BE794006036C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BFABC4461E4C011B006036C6 /* SwiftHaskell-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftHaskell-Bridging-Header.h"; sourceTree = "<group>"; };
-		BFABC4C21E4C26C8006036C6 /* libswifthaskell.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libswifthaskell.dylib; path = build/libswifthaskell.dylib; sourceTree = "<group>"; };
-		BFABC4C51E4C26DF006036C6 /* libHSrts_thr-ghc8.0.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libHSrts_thr-ghc8.0.1.dylib"; path = "build/libHSrts_thr-ghc8.0.1.dylib"; sourceTree = "<group>"; };
-		BFABC4C71E4C26E2006036C6 /* libffi.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libffi.dylib; path = build/libffi.dylib; sourceTree = "<group>"; };
+		BFABC45B1E4C1DD1006036C6 /* SwiftAppLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftAppLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFABC45E1E4C1DD1006036C6 /* SwiftAppLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftAppLibrary.h; sourceTree = "<group>"; };
+		BFABC45F1E4C1DD1006036C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFABC4CC1E4D627E006036C6 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		BFABC4D11E4D664D006036C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = MainMenu.xib; sourceTree = "<group>"; };
+		BFABC4D71E4D781D006036C6 /* SwiftHaskell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftHaskell.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFABC4DF1E4D781D006036C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BFABC4E41E4D781D006036C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFABC4EA1E4D78D9006036C6 /* SwiftHaskell */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = SwiftHaskell; path = build/SwiftHaskell; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		BFABC42B1E4BE794006036C6 /* Frameworks */ = {
+		BFABC4571E4C1DD1006036C6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFABC4C31E4C26C8006036C6 /* libswifthaskell.dylib in Frameworks */,
-				BFABC4C81E4C26E2006036C6 /* libffi.dylib in Frameworks */,
-				BFABC4C61E4C26DF006036C6 /* libHSrts_thr-ghc8.0.1.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		BFABC4251E4BE794006036C6 = {
+		BFABC4511E4C1DD1006036C6 = {
 			isa = PBXGroup;
 			children = (
-				BFABC4301E4BE794006036C6 /* SwiftHaskell */,
-				BFABC4C41E4C26CA006036C6 /* Libraries */,
-				BFABC42F1E4BE794006036C6 /* Products */,
+				BFABC45D1E4C1DD1006036C6 /* SwiftAppLibrary */,
+				BFABC4D81E4D781D006036C6 /* SwiftHaskell */,
+				BFABC45C1E4C1DD1006036C6 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		BFABC42F1E4BE794006036C6 /* Products */ = {
+		BFABC45C1E4C1DD1006036C6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BFABC42E1E4BE794006036C6 /* SwiftHaskell.app */,
+				BFABC45B1E4C1DD1006036C6 /* SwiftAppLibrary.framework */,
+				BFABC4D71E4D781D006036C6 /* SwiftHaskell.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BFABC4301E4BE794006036C6 /* SwiftHaskell */ = {
+		BFABC45D1E4C1DD1006036C6 /* SwiftAppLibrary */ = {
 			isa = PBXGroup;
 			children = (
-				BFABC4311E4BE794006036C6 /* AppDelegate.swift */,
-				BFABC4461E4C011B006036C6 /* SwiftHaskell-Bridging-Header.h */,
-				BFABC4331E4BE794006036C6 /* Assets.xcassets */,
-				BFABC4351E4BE794006036C6 /* MainMenu.xib */,
-				BFABC4381E4BE794006036C6 /* Info.plist */,
+				BFABC45E1E4C1DD1006036C6 /* SwiftAppLibrary.h */,
+				BFABC4CC1E4D627E006036C6 /* AppDelegate.swift */,
+				BFABC4D01E4D664D006036C6 /* MainMenu.xib */,
+				BFABC45F1E4C1DD1006036C6 /* Info.plist */,
+			);
+			path = SwiftAppLibrary;
+			sourceTree = "<group>";
+		};
+		BFABC4D81E4D781D006036C6 /* SwiftHaskell */ = {
+			isa = PBXGroup;
+			children = (
+				BFABC4DF1E4D781D006036C6 /* Assets.xcassets */,
+				BFABC4EA1E4D78D9006036C6 /* SwiftHaskell */,
+				BFABC4E41E4D781D006036C6 /* Info.plist */,
 			);
 			path = SwiftHaskell;
 			sourceTree = "<group>";
 		};
-		BFABC4C41E4C26CA006036C6 /* Libraries */ = {
-			isa = PBXGroup;
-			children = (
-				BFABC4C21E4C26C8006036C6 /* libswifthaskell.dylib */,
-				BFABC4C71E4C26E2006036C6 /* libffi.dylib */,
-				BFABC4C51E4C26DF006036C6 /* libHSrts_thr-ghc8.0.1.dylib */,
-			);
-			name = Libraries;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		BFABC4581E4C1DD1006036C6 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFABC4601E4C1DD1006036C6 /* SwiftAppLibrary.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		BFABC42D1E4BE794006036C6 /* SwiftHaskell */ = {
+		BFABC45A1E4C1DD1006036C6 /* SwiftAppLibrary */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BFABC43B1E4BE794006036C6 /* Build configuration list for PBXNativeTarget "SwiftHaskell" */;
+			buildConfigurationList = BFABC4631E4C1DD1006036C6 /* Build configuration list for PBXNativeTarget "SwiftAppLibrary" */;
 			buildPhases = (
-				BFABC42A1E4BE794006036C6 /* Sources */,
-				BFABC42B1E4BE794006036C6 /* Frameworks */,
-				BFABC42C1E4BE794006036C6 /* Resources */,
-				BFABC44B1E4C1BFA006036C6 /* CopyFiles */,
-				BFABC4441E4BFEA3006036C6 /* ShellScript */,
+				BFABC4561E4C1DD1006036C6 /* Sources */,
+				BFABC4571E4C1DD1006036C6 /* Frameworks */,
+				BFABC4581E4C1DD1006036C6 /* Headers */,
+				BFABC4591E4C1DD1006036C6 /* Resources */,
+				BFABC4CE1E4D6344006036C6 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
+			name = SwiftAppLibrary;
+			productName = SwiftAppLibrary;
+			productReference = BFABC45B1E4C1DD1006036C6 /* SwiftAppLibrary.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		BFABC4D61E4D781D006036C6 /* SwiftHaskell */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BFABC4E51E4D781D006036C6 /* Build configuration list for PBXNativeTarget "SwiftHaskell" */;
+			buildPhases = (
+				BFABC4F11E4D81E8006036C6 /* ShellScript */,
+				BFABC4D51E4D781D006036C6 /* Resources */,
+				BFABC4EF1E4D7948006036C6 /* CopyFiles */,
+				BFABC4EC1E4D78DF006036C6 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BFABC4E91E4D7842006036C6 /* PBXTargetDependency */,
+			);
 			name = SwiftHaskell;
 			productName = SwiftHaskell;
-			productReference = BFABC42E1E4BE794006036C6 /* SwiftHaskell.app */;
+			productReference = BFABC4D71E4D781D006036C6 /* SwiftHaskell.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		BFABC4261E4BE794006036C6 /* Project object */ = {
+		BFABC4521E4C1DD1006036C6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = nanotech;
 				TargetAttributes = {
-					BFABC42D1E4BE794006036C6 = {
+					BFABC45A1E4C1DD1006036C6 = {
+						CreatedOnToolsVersion = 8.2;
+						LastSwiftMigration = 0820;
+						ProvisioningStyle = Automatic;
+					};
+					BFABC4D61E4D781D006036C6 = {
 						CreatedOnToolsVersion = 8.2;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = BFABC4291E4BE794006036C6 /* Build configuration list for PBXProject "SwiftHaskell" */;
+			buildConfigurationList = BFABC4551E4C1DD1006036C6 /* Build configuration list for PBXProject "SwiftHaskell" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -144,73 +190,101 @@
 				en,
 				Base,
 			);
-			mainGroup = BFABC4251E4BE794006036C6;
-			productRefGroup = BFABC42F1E4BE794006036C6 /* Products */;
+			mainGroup = BFABC4511E4C1DD1006036C6;
+			productRefGroup = BFABC45C1E4C1DD1006036C6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				BFABC42D1E4BE794006036C6 /* SwiftHaskell */,
+				BFABC45A1E4C1DD1006036C6 /* SwiftAppLibrary */,
+				BFABC4D61E4D781D006036C6 /* SwiftHaskell */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		BFABC42C1E4BE794006036C6 /* Resources */ = {
+		BFABC4591E4C1DD1006036C6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFABC4341E4BE794006036C6 /* Assets.xcassets in Resources */,
-				BFABC4371E4BE794006036C6 /* MainMenu.xib in Resources */,
+				BFABC4D21E4D664D006036C6 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BFABC4D51E4D781D006036C6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFABC4E01E4D781D006036C6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		BFABC4441E4BFEA3006036C6 /* ShellScript */ = {
+		BFABC4CE1E4D6344006036C6 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"$(PROJECT_DIR)/src/Lib.hs",
-				"$(PROJECT_DIR)/SwiftHaskellLibrary.cabal",
-				"$(PROJECT_DIR)/stack.yaml",
+				"$(BUILT_PRODUCTS_DIR)/$(FULL_PRODUCT_NAME)",
 			);
 			outputPaths = (
-				"$(PROJECT_DIR)/build/libswifthaskell.dylib",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "stack build";
+			shellScript = "set -eu\nrsync -a \"${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}\" \"${PROJECT_DIR}\"/";
+			showEnvVarsInLog = 0;
+		};
+		BFABC4F11E4D81E8006036C6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "stack build\n./symlink_deps.sh";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		BFABC42A1E4BE794006036C6 /* Sources */ = {
+		BFABC4561E4C1DD1006036C6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFABC4321E4BE794006036C6 /* AppDelegate.swift in Sources */,
+				BFABC4CD1E4D627E006036C6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		BFABC4E91E4D7842006036C6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BFABC45A1E4C1DD1006036C6 /* SwiftAppLibrary */;
+			targetProxy = BFABC4E81E4D7842006036C6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
-		BFABC4351E4BE794006036C6 /* MainMenu.xib */ = {
+		BFABC4D01E4D664D006036C6 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				BFABC4361E4BE794006036C6 /* Base */,
+				BFABC4D11E4D664D006036C6 /* Base */,
 			);
 			name = MainMenu.xib;
+			path = Base.lproj;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		BFABC4391E4BE794006036C6 /* Debug */ = {
+		BFABC4611E4C1DD1006036C6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -233,6 +307,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -256,10 +331,12 @@
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		BFABC43A1E4BE794006036C6 /* Release */ = {
+		BFABC4621E4C1DD1006036C6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -282,6 +359,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -297,69 +375,110 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		BFABC43C1E4BE794006036C6 /* Debug */ = {
+		BFABC4641E4C1DD1006036C6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = SwiftHaskell/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/build",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = net.nanotechcorp.SwiftHaskell;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = SwiftAppLibrary/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = net.nanotechcorp.SwiftAppLibrary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "SwiftHaskell/SwiftHaskell-Bridging-Header.h";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/build $(PROJECT_DIR)/build/include";
 			};
 			name = Debug;
 		};
-		BFABC43D1E4BE794006036C6 /* Release */ = {
+		BFABC4651E4C1DD1006036C6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = SwiftAppLibrary/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = net.nanotechcorp.SwiftAppLibrary;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		BFABC4E61E4D781D006036C6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = SwiftHaskell/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/build",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.nanotechcorp.SwiftHaskell;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "SwiftHaskell/SwiftHaskell-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
-				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/build $(PROJECT_DIR)/build/include";
+			};
+			name = Debug;
+		};
+		BFABC4E71E4D781D006036C6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = SwiftHaskell/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = net.nanotechcorp.SwiftHaskell;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BFABC4291E4BE794006036C6 /* Build configuration list for PBXProject "SwiftHaskell" */ = {
+		BFABC4551E4C1DD1006036C6 /* Build configuration list for PBXProject "SwiftHaskell" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BFABC4391E4BE794006036C6 /* Debug */,
-				BFABC43A1E4BE794006036C6 /* Release */,
+				BFABC4611E4C1DD1006036C6 /* Debug */,
+				BFABC4621E4C1DD1006036C6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BFABC43B1E4BE794006036C6 /* Build configuration list for PBXNativeTarget "SwiftHaskell" */ = {
+		BFABC4631E4C1DD1006036C6 /* Build configuration list for PBXNativeTarget "SwiftAppLibrary" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BFABC43C1E4BE794006036C6 /* Debug */,
-				BFABC43D1E4BE794006036C6 /* Release */,
+				BFABC4641E4C1DD1006036C6 /* Debug */,
+				BFABC4651E4C1DD1006036C6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		BFABC4E51E4D781D006036C6 /* Build configuration list for PBXNativeTarget "SwiftHaskell" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BFABC4E61E4D781D006036C6 /* Debug */,
+				BFABC4E71E4D781D006036C6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = BFABC4261E4BE794006036C6 /* Project object */;
+	rootObject = BFABC4521E4C1DD1006036C6 /* Project object */;
 }
