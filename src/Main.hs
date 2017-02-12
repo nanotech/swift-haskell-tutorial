@@ -1,15 +1,15 @@
-module Main (main) where
+module Main where
 
-import Foreign
 import Foreign.C
 
-import Lib
+foreign export ccall square :: CInt -> CInt
 
-foreign import ccall "swiftAppMain" swiftAppMain :: FunPtr (CInt -> CInt) -> IO ()
-foreign import ccall "wrapper" wrapSquare :: (CInt -> CInt) -> IO (FunPtr (CInt -> CInt))
+square :: CInt -> CInt
+square x = x * x
+
+foreign import ccall "runNSApplication" runNSApplication :: IO ()
 
 main :: IO ()
 main = do
-  putStrLn "Hello"
-  cSquare <- wrapSquare square
-  swiftAppMain cSquare
+  putStrLn "hello world"
+  runNSApplication

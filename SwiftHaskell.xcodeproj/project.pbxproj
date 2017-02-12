@@ -11,8 +11,8 @@
 		BFABC4CD1E4D627E006036C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFABC4CC1E4D627E006036C6 /* AppDelegate.swift */; };
 		BFABC4D21E4D664D006036C6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFABC4D01E4D664D006036C6 /* MainMenu.xib */; };
 		BFABC4E01E4D781D006036C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFABC4DF1E4D781D006036C6 /* Assets.xcassets */; };
-		BFABC4ED1E4D78E5006036C6 /* SwiftHaskell in CopyFiles */ = {isa = PBXBuildFile; fileRef = BFABC4EA1E4D78D9006036C6 /* SwiftHaskell */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		BFABC4F01E4D7951006036C6 /* SwiftAppLibrary.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BFABC45B1E4C1DD1006036C6 /* SwiftAppLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BFABC4ED1E4D78E5006036C6 /* SwiftHaskell in Copy Files */ = {isa = PBXBuildFile; fileRef = BFABC4EA1E4D78D9006036C6 /* SwiftHaskell */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		BFABC4F01E4D7951006036C6 /* SwiftAppLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BFABC45B1E4C1DD1006036C6 /* SwiftAppLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,24 +26,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		BFABC4EC1E4D78DF006036C6 /* CopyFiles */ = {
+		BFABC4EC1E4D78DF006036C6 /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
-				BFABC4ED1E4D78E5006036C6 /* SwiftHaskell in CopyFiles */,
+				BFABC4ED1E4D78E5006036C6 /* SwiftHaskell in Copy Files */,
 			);
+			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BFABC4EF1E4D7948006036C6 /* CopyFiles */ = {
+		BFABC4EF1E4D7948006036C6 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				BFABC4F01E4D7951006036C6 /* SwiftAppLibrary.framework in CopyFiles */,
+				BFABC4F01E4D7951006036C6 /* SwiftAppLibrary.framework in Embed Frameworks */,
 			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -128,11 +130,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BFABC4631E4C1DD1006036C6 /* Build configuration list for PBXNativeTarget "SwiftAppLibrary" */;
 			buildPhases = (
+				BF2EA5CA1E5030E100651018 /* stack build and link-deps */,
 				BFABC4561E4C1DD1006036C6 /* Sources */,
 				BFABC4571E4C1DD1006036C6 /* Frameworks */,
 				BFABC4581E4C1DD1006036C6 /* Headers */,
 				BFABC4591E4C1DD1006036C6 /* Resources */,
-				BFABC4CE1E4D6344006036C6 /* ShellScript */,
+				BFABC4CE1E4D6344006036C6 /* Link framework to build */,
 			);
 			buildRules = (
 			);
@@ -147,10 +150,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BFABC4E51E4D781D006036C6 /* Build configuration list for PBXNativeTarget "SwiftHaskell" */;
 			buildPhases = (
-				BFABC4F11E4D81E8006036C6 /* ShellScript */,
 				BFABC4D51E4D781D006036C6 /* Resources */,
-				BFABC4EF1E4D7948006036C6 /* CopyFiles */,
-				BFABC4EC1E4D78DF006036C6 /* CopyFiles */,
+				BFABC4EF1E4D7948006036C6 /* Embed Frameworks */,
+				BFABC4EC1E4D78DF006036C6 /* Copy Files */,
 			);
 			buildRules = (
 			);
@@ -221,7 +223,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		BFABC4CE1E4D6344006036C6 /* ShellScript */ = {
+		BF2EA5CA1E5030E100651018 /* stack build and link-deps */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(PROJECT_DIR)/src/Lib.hs",
+				"$(PROJECT_DIR)/src/Main.hs",
+				"$(PROJECT_DIR)/SwiftHaskellLibrary.cabal",
+			);
+			name = "stack build and link-deps";
+			outputPaths = (
+				"$(PROJECT_DIR)/build/SwiftHaskell",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "stack build\nbash link-deps.sh";
+			showEnvVarsInLog = 0;
+		};
+		BFABC4CE1E4D6344006036C6 /* Link framework to build */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -229,25 +250,12 @@
 			inputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FULL_PRODUCT_NAME)",
 			);
+			name = "Link framework to build";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -eu\nrsync -a \"${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}\" \"${PROJECT_DIR}\"/";
-			showEnvVarsInLog = 0;
-		};
-		BFABC4F11E4D81E8006036C6 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "stack build\n./symlink_deps.sh";
+			shellScript = "set -u\nln -sf \"${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}\" \"${PROJECT_DIR}/build/\"";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -288,10 +296,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -340,10 +348,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -384,7 +392,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -395,11 +402,17 @@
 				INFOPLIST_FILE = SwiftAppLibrary/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-undefined",
+					dynamic_lookup,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.nanotechcorp.SwiftAppLibrary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = "$(PROJECT_DIR)/SwiftHaskell/include";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/build/ghc/include";
 			};
 			name = Debug;
 		};
@@ -407,7 +420,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -418,10 +430,16 @@
 				INFOPLIST_FILE = SwiftAppLibrary/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-undefined",
+					dynamic_lookup,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.nanotechcorp.SwiftAppLibrary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = "$(PROJECT_DIR)/SwiftHaskell/include";
 				SWIFT_VERSION = 3.0;
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/build/ghc/include";
 			};
 			name = Release;
 		};
@@ -477,6 +495,7 @@
 				BFABC4E71E4D781D006036C6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

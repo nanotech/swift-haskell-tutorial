@@ -1,0 +1,4 @@
+module SwiftHaskell {
+    header "Main_stub.h"
+    export *
+}

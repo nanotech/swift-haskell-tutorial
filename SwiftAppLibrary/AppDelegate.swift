@@ -7,25 +7,23 @@
 //
 
 import Cocoa
+import SwiftHaskell
 
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var window: NSWindow!
     @IBOutlet weak var label: NSTextField!
 
-    static var square: (@convention(c) (CInt) -> CInt)! = nil
-
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        label.stringValue = "\(AppDelegate.square(5))"
+        label.stringValue = "\(square(5))"
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
     }
 }
 
-@_cdecl("swiftAppMain")
-func swiftAppMain(square: @escaping @convention(c) (CInt) -> CInt) {
-    AppDelegate.square = square
+@_cdecl("runNSApplication")
+func runNSApplication() {
     let app = NSApplication.shared()
     var topObjects: NSArray = []
     NSNib.init(nibNamed: "MainMenu", bundle: Bundle(for: AppDelegate.self))!

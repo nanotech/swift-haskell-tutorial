@@ -14,8 +14,6 @@ FOUNDATION_EXPORT double SwiftAppLibraryVersionNumber;
 //! Project version string for SwiftAppLibrary.
 FOUNDATION_EXPORT const unsigned char SwiftAppLibraryVersionString[];
 
-FOUNDATION_EXPORT void swiftAppMain(void);
+FOUNDATION_EXPORT void runNSApplication(void);
 
 // In this header, you should import all the public headers of your framework using statements like #import <SwiftAppLibrary/PublicHeader.h>
-
-
