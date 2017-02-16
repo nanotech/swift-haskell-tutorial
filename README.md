@@ -229,31 +229,38 @@ executable SwiftHaskell
 ## Starting the GUI
 
 Because Haskell has control over the program's entry point
-(`main`), we'll need to have it call out to Swift to
-start Cocoa's main thread. Add this top level function to
-`AppDelegate.swift`:
-
-```swift
-@_cdecl("runNSApplication")
-func runNSApplication() {
-    let app = NSApplication.shared()
-    var topObjects: NSArray = []
-    NSNib.init(nibNamed: "MainMenu", bundle: Bundle(for: AppDelegate.self))!
-        .instantiate(withOwner: app, topLevelObjects: &topObjects)
-    app.run()
-}
-```
-
-`@_cdecl` sets the symbol name of the Swift function, overriding
-normal symbol mangling.
-
-In `SwiftAppLibrary.h`, add a `FOUNDATION_EXPORT` C prototype
-for the function, so that its symbol gets marked as public and
-is exported from the framework:
+(`main`), we'll need to have it call out to Cocoa to start its
+main thread. In `SwiftAppLibrary.h`, declare a new function
+named `runNSApplication` and mark it as `FOUNDATION_EXPORT` to
+indicate that it should be exported from the framework:
 
 ```c
 FOUNDATION_EXPORT void runNSApplication(void);
 ```
+
+Implement the function by adding a new Objective-C `.m` file to
+the framework target containing
+
+```objective-c
+#import "SwiftAppLibrary.h"
+
+@interface AClassInThisFramework : NSObject @end
+@implementation AClassInThisFramework @end
+
+void runNSApplication(void) {
+    NSApplication *app = [NSApplication sharedApplication];
+    NSBundle *bundle = [NSBundle bundleForClass:[AClassInThisFramework class]];
+    NSArray *topObjects;
+    [[[NSNib alloc] initWithNibNamed:@"MainMenu" bundle:bundle]
+     instantiateWithOwner:app topLevelObjects:&topObjects];
+    [app run];
+}
+```
+
+This *is* possible to write in Swift, however as of Swift 3.0.2,
+the annotation to export unmangled C symbols (`@_cdecl`) is not
+documented as stable. Additionally, whole module optimization
+will assume that `@_cdecl` symbols are unused and remove them.
 
 In `Main.hs`, import the foreign function and call it from
 the end of `main`:

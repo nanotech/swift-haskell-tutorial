@@ -13,6 +13,7 @@
 		BFABC4E01E4D781D006036C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFABC4DF1E4D781D006036C6 /* Assets.xcassets */; };
 		BFABC4ED1E4D78E5006036C6 /* SwiftHaskell in Copy Files */ = {isa = PBXBuildFile; fileRef = BFABC4EA1E4D78D9006036C6 /* SwiftHaskell */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		BFABC4F01E4D7951006036C6 /* SwiftAppLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BFABC45B1E4C1DD1006036C6 /* SwiftAppLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BFE4CC421E55553000F232D6 /* SwiftAppLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = BFE4CC411E55553000F232D6 /* SwiftAppLibrary.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		BFABC4DF1E4D781D006036C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFABC4E41E4D781D006036C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFABC4EA1E4D78D9006036C6 /* SwiftHaskell */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; name = SwiftHaskell; path = build/SwiftHaskell; sourceTree = SOURCE_ROOT; };
+		BFE4CC411E55553000F232D6 /* SwiftAppLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwiftAppLibrary.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				BFABC45E1E4C1DD1006036C6 /* SwiftAppLibrary.h */,
+				BFE4CC411E55553000F232D6 /* SwiftAppLibrary.m */,
 				BFABC4CC1E4D627E006036C6 /* AppDelegate.swift */,
 				BFABC4D01E4D664D006036C6 /* MainMenu.xib */,
 				BFABC45F1E4C1DD1006036C6 /* Info.plist */,
@@ -266,6 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFABC4CD1E4D627E006036C6 /* AppDelegate.swift in Sources */,
+				BFE4CC421E55553000F232D6 /* SwiftAppLibrary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
