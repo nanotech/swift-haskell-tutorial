@@ -343,7 +343,20 @@ And the executable as an output file:
 $(PROJECT_DIR)/build/SwiftHaskell
 ```
 
-TODO: `xcodebuild` from `Setup.hs` hooks?
+Or, if you prefer building primarily with `stack build`, set the
+`build-type` in your `.cabal` to `Custom` and add a `postBuild`
+hook to `Setup.hs`:
+
+```haskell
+import Distribution.Simple
+import System.Process
+
+main = defaultMainWithHooks $ simpleUserHooks
+  { postBuild = \args buildFlags pkgDesc localBuildInfo -> do
+      callProcess "bash" ["link-deps.sh"]
+      callProcess "xcodebuild" ["-target", "SwiftHaskell"]
+  }
+```
 
 ## Calling Haskell from Swift
 
