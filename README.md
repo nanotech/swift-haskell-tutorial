@@ -403,11 +403,330 @@ Running the app,
 
 ![5 squared](tutorial/squared.png)
 
-## Strings and ByteString FFI
+## Passing Complex Data Types
 
-TODO
+### Bytes
 
-## Function and Closure FFI
+#### `[UInt8]` to `ByteString`
 
-TODO
+Call `withUnsafeBufferPointer` on a Swift `Array` to get
+an `UnsafeBufferPointer`, and then read its `.baseAddress`
+property to get an `UnsafePointer` pass into the exported
+Haskell function. The corresponding mutable variants are
+`withUnsafeMutableBufferPointer`, `UnsafeMutableBufferPointer`,
+and `UnsafeMutablePointer`.
 
+The generated Haskell headers use a single pointer type for all
+pointers, `HsPtr` (`void *`), which is mutable (not `const`). If
+you know that a function does not mutate through a pointer, you
+can use the `HsPtr(mutating:)` constructor to cast a non-mutable
+pointer to a mutable pointer.
+
+```swift
+bytes.withUnsafeBufferPointer { bytesBufPtr in
+    someHaskellFunction(HsPtr(mutating: bytesBufPtr.baseAddress), bytesBufPtr.count)
+}
+```
+
+If the function mutates the pointer's data, you must use
+`withUnsafeMutableBytes`:
+
+```swift
+bytes.withUnsafeMutableBufferPointer { bytesBufPtr in
+    someHaskellFunction(bytesBufPtr.baseAddress, bytesBufPtr.count)
+}
+```
+
+To bring an array of bytes into a Haskell `ByteString`, use
+`Data.ByteString.packCStringLen`:
+
+```haskell
+type CString = Ptr CChar
+packCStringLen :: (CString, Int) -> IO ByteString
+```
+
+For example,
+
+```haskell
+import Foreign.C
+import Foreign.Ptr
+
+import qualified Data.ByteString as B
+import Data.Word
+
+foreign export ccall countBytes :: Word8 -> Ptr CChar -> CSize -> IO CSize
+
+countBytes :: Word8 -> Ptr CChar -> CSize -> IO CSize
+countBytes needle haystack haystackLen = do
+  s <- B.packCStringLen (haystack, fromIntegral haystackLen)
+  pure (B.foldl (\count b -> count + if b == needle then 1 else 0) 0 s)
+```
+
+With a Swift wrapping function of
+
+```swift
+func count(byte: UInt8, in bytes: [UInt8]) -> Int {
+    var r = 0
+    bytes.withUnsafeBytes { bytesPtr in
+        r = Int(SwiftHaskell.countBytes(byte, HsPtr(mutating: bytesPtr.baseAddress)))
+    }
+    return r
+}
+```
+
+#### `ByteString` to `[UInt8]`
+
+To pass a `ByteString` to an exported Swift function that
+accepts a pointer and a length, use `useAsCStringLen`:
+
+```haskell
+import Data.ByteString (ByteString)
+import qualified Data.ByteString as B
+
+foreign import ccall "someSwiftFunction" someSwiftFunction :: Ptr CChar -> CSize -> IO ()
+
+passByteString :: ByteString -> IO ()
+passByteString s =
+  B.useAsCStringLen s $ \(p, n) ->
+    someSwiftFunction p (fromIntegral n)
+```
+
+To return the contents of a `ByteString`, call `mallocArray` to
+allocate a new array with C's `malloc` allocator and copy the
+`ByteString` data into it. The Swift caller is then responsible
+for calling `free` on the pointer. Use `Foreign.Storable.poke`
+to also return the size by writing into a passed pointer.
+
+```haskell
+import Data.ByteString (ByteString)
+import qualified Data.ByteString as B
+import qualified Data.ByteString.Unsafe as BU
+import Foreign.Storable (poke)
+
+mallocCopyByteString :: ByteString -> IO (Ptr CChar, Int)
+mallocCopyByteString s =
+  BU.unsafeUseAsCStringLen s $ \(p, n) -> do
+    a <- mallocArray n
+    copyArray a p n
+    pure (a, n)
+
+foreign export ccall getSequence :: Ptr CSize -> IO (Ptr CChar)
+
+getSequence :: Ptr CSize -> IO (Ptr CChar)
+getSequence sizePtr = do
+  (p, n) <- mallocCopyByteString (B.pack [1..10])
+  poke sizePtr (fromIntegral n)
+  pure p
+```
+
+The imported `getSequence` function returns a
+`UnsafeMutableRawPointer` in Swift. To copy the elements into
+a Swift array, first assign a type to the memory using the
+`.assumingMemoryBound(to:)` method. Then wrap the pointer
+and length in an `UnsafeBufferPointer` and pass it to the
+array constructor, which copies the elements into a new array
+using the `Collection` protocol that `UnsafeBufferPointer`
+implements.
+
+```swift
+func getSequence() -> [UInt8] {
+    var n = 0
+    let p = SwiftHaskell.getSequence(&n).assumingMemoryBound(to: UInt8.self)
+    let a = [UInt8](UnsafeBufferPointer(start: p, count: n))
+    free(p)
+    return a
+}
+```
+
+### Functions and Closures
+
+#### Passing Swift Functions to Haskell
+
+C function pointers have a type constructor of `FunPtr` in
+Haskell. For example, `FunPtr (CInt -> CSize -> IO ())`
+corresponds to `void (*)(int, size_t)`.
+
+To convert `FunPtr`s into callable Haskell functions, use a
+`foreign import ccall "dynamic"` declaration to ask the compiler
+to generate a conversion function for that function type:
+
+```haskell
+foreign export ccall callbackExample :: FunPtr (CInt -> IO ()) -> IO ()
+foreign import ccall "dynamic" unwrapCallback :: FunPtr (CInt -> IO ()) -> (CInt -> IO ())
+
+callbackExample :: FunPtr (CInt -> IO ()) -> IO ()
+callbackExample f = (unwrapCallback f) 3
+```
+
+If there is no context that needs to be captured, Swift
+functions can be passed in almost directly. However, like
+`HsPtr`, the generated headers only use a single function
+pointer type, `HsFunPtr` (`void (*)(void)`), so a little casting
+is usually necessary:
+
+```swift
+func callbackExample(f: (@convention(c) (CInt) -> Void)) {
+    let hsf: HsFunPtr = unsafeBitCast(f, to: HsFunPtr.self)
+    SwiftHaskell.callbackExample(hsf)
+}
+```
+
+To pass Swift closures with context, we can use the traditional
+`void *` context pointer solution. Passing context however
+means that we need to keep it alive while the callback is held,
+and release it when we're done with it. For that, we can use
+`Foreign.ForeignPtr`.
+
+We'll wrap the context with
+
+```haskell
+type FinalizerPtr a = FunPtr (Ptr a -> IO ())
+newForeignPtr :: FinalizerPtr a -> Ptr a -> IO (ForeignPtr a)
+```
+
+and then apply it to the function with
+
+```haskell
+withForeignPtr :: ForeignPtr a -> (Ptr a -> IO b) -> IO b
+```
+
+Together we have:
+
+```haskell
+import Control.Concurrent
+import Foreign.C
+import Foreign.ForeignPtr
+import Foreign.Ptr
+
+foreign export ccall contextCallbackExample
+    :: Ptr ()
+    -> FunPtr (Ptr () -> IO ())
+    -> FunPtr (Ptr () -> CInt -> IO ())
+    -> IO ()
+foreign import ccall "dynamic" unwrapContextCallback
+    :: FunPtr (Ptr () -> CInt -> IO ())
+    -> (Ptr () -> CInt -> IO ())
+
+contextCallbackExample
+    :: Ptr ()                           -- ^ Context pointer
+    -> FunPtr (Ptr () -> IO ())         -- ^ Context release function
+    -> FunPtr (Ptr () -> CInt -> IO ()) -- ^ Callback function
+    -> IO ()
+contextCallbackExample ctxp releaseCtx callbackPtr = do
+  ctxfp <- newForeignPtr releaseCtx ctxp
+  let callback :: CInt -> IO ()
+      callback result = withForeignPtr ctxfp $ \ctxp' ->
+        (unwrapContextCallback callbackPtr) ctxp' result
+  _ <- forkIO $ do
+      let result = 3 -- perform your complex computation here
+      callback result
+  pure ()
+```
+
+The context pointer that we pass from the Swift side will be an
+object containing the closure itself. The function passed as
+the function pointer will merely cast the object to the known
+closure type and call it.
+
+To convert our Swift closure into a raw pointer, we'll use
+Swift's `Unmanaged` wrapper type. These are the methods we'll
+use from it:
+
+```swift
+public struct Unmanaged<Instance : AnyObject> {
+    public static func passRetained(_ value: Instance) -> Unmanaged<Instance>
+    public func toOpaque() -> UnsafeMutableRawPointer
+    public static func fromOpaque(_ value: UnsafeRawPointer) -> Unmanaged<Instance>
+    public func takeUnretainedValue() -> Instance
+    public func takeRetainedValue() -> Instance
+}
+```
+
+Since Swift functions do not implement the `AnyObject` protocol
+(they are not class types), we'll need to wrap them in a object
+first.
+
+Additionally, referring directly to a Swift function name will
+give a Swift function type, which is not bit-compatible with a C
+function type. Before casting to `HsFunPtr`, we'll need to use a
+safe `as` cast to a `@convention(c)` type.
+
+```swift
+func contextCallbackExample(f: ((CInt) -> Void)) {
+    class Wrap<T> {
+        var inner: T
+
+        init(_ inner: T) {
+            self.inner = inner
+        }
+    }
+    func release(context: HsPtr) {
+        let _: Wrap<(CInt) -> Void> = Unmanaged.fromOpaque(context).takeRetainedValue()
+    }
+    func call(context: HsPtr, value: CInt) {
+        let wf: Wrap<(CInt) -> Void> = Unmanaged.fromOpaque(context).takeUnretainedValue()
+        let f = wf.inner
+        f(value)
+    }
+    let release_hs = unsafeBitCast(
+        release as @convention(c) (HsPtr) -> Void, to: HsFunPtr.self)
+    let call_hs = unsafeBitCast(
+        call as @convention(c) (HsPtr, CInt) -> Void, to: HsFunPtr.self)
+    let ctx = Unmanaged.passRetained(Wrap(f)).toOpaque()
+    SwiftHaskell.contextCallbackExample(ctx, release_hs, call_hs)
+}
+```
+
+#### Passing Haskell Functions to Swift
+
+In addition to the static `foreign export`, we can export
+dynamically created Haskell functions with `foreign export
+"wrapper"`. Unlike when passing Swift closures, a separate
+context pointer is not needed as the Haskell runtime supplies a
+distinct function pointer address for each wrapped function.
+
+```haskell
+import Foreign.C
+import Foreign.Ptr
+
+foreign export ccall makeMultiplier :: CInt -> IO (FunPtr (CInt -> CInt))
+foreign import ccall "wrapper" wrapMultiplier
+    :: (CInt -> CInt)
+    -> IO (FunPtr (CInt -> CInt))
+
+makeMultiplier :: CInt -> IO (FunPtr (CInt -> CInt))
+makeMultiplier x = wrapMultiplier (x *)
+```
+
+To free the `FunPtr`, export `Foreign.Ptr.freeHaskellFunPtr` and
+call it from Swift when you're done with the function.
+
+```haskell
+foreign export ccall freeMultiplier :: FunPtr (CInt -> CInt) -> IO ()
+
+freeMultiplier :: FunPtr (CInt -> CInt) -> IO ()
+freeMultiplier = freeHaskellFunPtr
+```
+
+Wrap the Haskell function in a Swift class to manage its
+lifetime:
+
+```swift
+class Multiplier {
+    let funPtr: HsFunPtr
+
+    init(_ x: CInt) {
+        self.funPtr = SwiftHaskell.makeMultiplier(x)
+    }
+
+    func multiply(_ y: CInt) -> CInt {
+        typealias F = @convention(c) (CInt) -> CInt
+        let f = unsafeBitCast(self.funPtr, to: F.self)
+        return f(y)
+    }
+
+    deinit {
+        SwiftHaskell.freeMultiplier(self.funPtr)
+    }
+}
+```
