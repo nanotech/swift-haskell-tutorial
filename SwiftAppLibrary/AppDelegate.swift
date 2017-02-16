@@ -37,15 +37,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 }
 
-@_cdecl("runNSApplication")
-func runNSApplication() {
-    let app = NSApplication.shared()
-    var topObjects: NSArray = []
-    NSNib.init(nibNamed: "MainMenu", bundle: Bundle(for: AppDelegate.self))!
-        .instantiate(withOwner: app, topLevelObjects: &topObjects)
-    app.run()
-}
-
 
 // Swift to Haskell ByteString Example
 
