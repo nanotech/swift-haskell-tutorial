@@ -1,11 +1,12 @@
 # Integrating Haskell with Swift Mac Apps
 
 To start, create a new Cocoa Application Xcode project
-with Swift as the default language:
 
-![Select the Cocoa app template](tutorial/xcode-cocoa-template.png)
+![Select the Cocoa app template](tutorial/xcode-cocoa-template-icon.png)
 
-![Create a new project](tutorial/xcode-create-project.png)
+with Swift as the default language.
+
+![Select Swift as the default language](tutorial/xcode-create-project-language-swift.png)
 
 Then `cd` into the directory with the `.xcodeproj` and create a
 new stack project:
@@ -194,6 +195,8 @@ In the SwiftHaskell app target's Build Phases, remove the
 phases, and add a new **Copy Files** phase that copies the
 `SwiftHaskell` executable into the app bundle's Executables
 directory:
+
+![New Copy Files Phase](tutorial/xcode-new-copy-files-phase.png)
 
 ![Copy into Executables](tutorial/xcode-copy-files-swifthaskell-executable.png)
 
