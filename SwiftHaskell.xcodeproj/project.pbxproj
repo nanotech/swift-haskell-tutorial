@@ -232,9 +232,9 @@
 			files = (
 			);
 			inputPaths = (
-				"$(PROJECT_DIR)/src/Lib.hs",
 				"$(PROJECT_DIR)/src/Main.hs",
 				"$(PROJECT_DIR)/SwiftHaskellLibrary.cabal",
+				"$(PROJECT_DIR)/stack.yaml",
 			);
 			name = "stack build and link-deps";
 			outputPaths = (
