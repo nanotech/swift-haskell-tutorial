@@ -229,7 +229,7 @@ executable SwiftHaskell
   executable where the dynamic linker should look for shared
   libraries.
 
-## Starting the GUI
+## Starting Cocoa
 
 Because Haskell has control over the program's entry point
 (`main`), we'll need to have it call out to Cocoa to start its
@@ -296,7 +296,7 @@ from `MainMenu.xib`:
 
 ![A blank window](tutorial/empty-app.png)
 
-## Completing Linking Setup
+## Linking to the Executable
 
 Add `$(PROJECT_DIR)/SwiftHaskell/include` to the framework
 target's **Swift Compiler - Search Paths, Import Paths** setting
