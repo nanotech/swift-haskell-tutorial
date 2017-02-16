@@ -342,6 +342,7 @@ Add the Haskell sources as input files:
 ```
 $(PROJECT_DIR)/src/Main.hs
 $(PROJECT_DIR)/SwiftHaskellLibrary.cabal
+$(PROJECT_DIR)/stack.yaml
 ```
 
 And the executable as an output file:
