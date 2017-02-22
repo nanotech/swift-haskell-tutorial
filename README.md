@@ -213,6 +213,9 @@ set -u
 ln -sf "${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}" "${PROJECT_DIR}/build/"
 ```
 
+Build the SwiftAppLibrary framework in Xcode to prepare for the
+next sections.
+
 ## Linking to the Framework
 
 Add these options to the executable's section in the `.cabal`
