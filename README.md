@@ -169,6 +169,10 @@ ln -sf "${GHC_LIB_DIR}/include" build/ghc/
 ln -sf "../${DIST_DIR}/build/${EXECUTABLE_NAME}/${EXECUTABLE_NAME}" build/
 ```
 
+Change the value of the `EXECUTABLE_NAME` variable to the
+name of the executable in your `.cabal` file if you named it
+something other than SwiftHaskell.
+
 Save the script as `link-deps.sh`, run `stack build`, and then
 run `bash link-deps.sh` to prepare for the next section.
 
