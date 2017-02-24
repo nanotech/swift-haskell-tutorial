@@ -6,6 +6,23 @@ to build the UI, and Haskell to implement backend logic.
 A basic familiarity with Haskell, Swift, Objective-C, C, Xcode,
 and shell scripting will be assumed.
 
+### Table of Contents
+
+1.  [Project Setup](#project-setup)
+2.  [Exporting Haskell Functions](#exporting-haskell-functions)
+3.  [Importing Haskell's Generated FFI Headers into Swift](#importing-haskells-generated-ffi-headers-into-swift)
+4.  [Converting the Swift App to a Framework](#converting-the-swift-app-to-a-framework)
+    1. [Framework Configuration](#framework-configuration)
+    2. [App Bundle Configuration](#app-bundle-configuration)
+5.  [Linking to the Framework](#linking-to-the-framework)
+6.  [Starting Cocoa](#starting-cocoa)
+7.  [Linking to the Executable](#linking-to-the-executable)
+8.  [Calling Haskell from Swift](#calling-haskell-from-swift)
+9.  [Passing Complex Data Types](#passing-complex-data-types)
+    1. [Bytes](#bytes)
+    2. [Functions and Closures](#functions-and-closures)
+10. [Troubleshooting](#troubleshooting)
+
 ## Project Setup
 
 To start, create a new Cocoa Application Xcode project
