@@ -235,9 +235,13 @@ ln -sf "${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}" "${PROJECT_DIR}/build/"
 
 Drag the `SwiftHaskell` executable we built previously with
 Stack into Xcode from the `build/` directory that we symlinked
-it into, but do not add it to any targets when prompted:
+it into,
 
-![The SwiftHaskell executable in Xcode](tutorial/xcode-files-swifthaskell-executable.png)
+![The SwiftHaskell executable in Xcode](tutorial/xcode-drag-swifthaskell-executable.png)
+
+but do not add it to any targets when prompted:
+
+![Do not add the executable to any targets](tutorial/xcode-add-to-no-targets.png)
 
 When Xcode creates Swift frameworks, it expects that the
 application that links the framework will include the Swift
@@ -251,19 +255,23 @@ Standard Libraries** to **Yes**:
 
 ![Always Embed Swift Standard Libraries: Yes](tutorial/xcode-embed-swift-standard-libs.png)
 
-In the SwiftHaskell app target's Build Phases, remove the
-**Compile Sources** and **Link Binary With Libraries**
-phases, and add a new **Copy Files** phase that copies the
-`SwiftHaskell` executable into the app bundle's Executables
-directory:
+In the app target's Build Phases, remove the **Compile Sources**
+and **Link Binary With Libraries** phases. We are using Stack to
+build the app's executable instead of Xcode.
+
+Add a new **Copy Files** phase that copies the `SwiftHaskell`
+executable into the app bundle's Executables directory:
 
 ![New Copy Files Phase](tutorial/xcode-new-copy-files-phase.png)
 
-![Copy into Executables](tutorial/xcode-copy-files-swifthaskell-executable.png)
+![Select the executable](tutorial/xcode-choose-executable.png)
 
+![Copy into Executables](tutorial/xcode-copy-files-swifthaskell-executable.png)
 
 Build the SwiftAppLibrary framework in Xcode to prepare for the
 next sections.
+
+![Select the SwiftAppLibrary target](tutorial/xcode-select-framework-target.png)
 
 ## Linking to the Framework
 
@@ -360,13 +368,15 @@ from `MainMenu.xib`:
 
 ## Linking to the Executable
 
-Add `$(PROJECT_DIR)/SwiftHaskell/include` to the framework
-target's **Swift Compiler - Search Paths, Import Paths** setting
-in Xcode,
+To tell Xcode where to find our `module.modulemap`, add
+`$(PROJECT_DIR)/SwiftHaskell/include` to the framework target's
+**Swift Compiler - Search Paths, Import Paths** setting in
+Xcode,
 
 ![The Swift module import paths](tutorial/xcode-swift-module-search-paths.png)
 
-and `$(PROJECT_DIR)/build/ghc/include` to the framework's **User
+and, for the GHC headers the module depends on, add
+`$(PROJECT_DIR)/build/ghc/include` to the framework's **User
 Header Search Paths** setting:
 
 ![The User Header Search Paths](tutorial/xcode-header-search-paths.png)
@@ -382,7 +392,7 @@ Be aware that this means that link errors will occur at runtime
 instead of at link time. Also note that the framework linking
 to symbols in the executable (and depending on the generated
 headers), and the executable linking to the framework, creates
-a circular dependency. When initially building the project, you
+a circular dependency. When building the project clean, you
 will need to build the components in this order:
 
 - `stack build` to generate the Haskell FFI export headers.
@@ -434,7 +444,8 @@ main = defaultMainWithHooks $ simpleUserHooks
 ## Calling Haskell from Swift
 
 We're now ready to use exported Haskell functions from Swift.
-Import `SwiftHaskell` at the top of `AppDelegate.swift`
+Import the module we defined in our `module.modulemap`,
+`SwiftHaskell`, at the top of `AppDelegate.swift`:
 
 ```swift
 import SwiftHaskell
