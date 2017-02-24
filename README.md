@@ -818,3 +818,49 @@ class Multiplier {
     }
 }
 ```
+
+## Troubleshooting
+
+### `stack build` fails with `ld: framework not found SwiftHaskellLibrary`
+
+Build the SwiftHaskellLibrary framework in Xcode before running
+`stack build`.
+
+![Select the SwiftAppLibrary target](tutorial/xcode-select-framework-target.png)
+
+See the discussion about circular dependencies in the *Linking
+to the Executable* section. If this still fails, ensure that
+`link-deps.sh` is being run before the framework is built as
+described at the end of *Linking to the Executable*. Also check
+that the `build/` directory contains all three symlinks:
+
+- `SwiftAppLibrary.framework` `-> ~/Library/Developer/Xcode/DerivedData/SwiftHaskell-{hash}/Build/Products/{Debug,Release}/SwiftAppLibrary.framework`
+- `SwiftHaskell` `-> ../.stack-work/dist/{arch}/Cabal-{version}/build/SwiftHaskell/SwiftHaskell`
+- `ghc`
+    - `include` `-> ~/.stack/programs/{arch}/ghc-{version}/bin/../lib/ghc-{version}/include`
+
+### Building in Xcode fails with `PBXCp ...build/SwiftHaskell/SwiftHaskell: No such file or directory`
+
+Build the Haskell executable with `stack build`.
+
+### Some Target Membership checkboxes are disabled in Xcode
+
+Add a Compile Sources or Copy Bundle Resources phase, as
+appropriate for the file you're modifying, to the target with
+the disabled checkbox.
+
+### Building in Xcode fails with `Unable to run command ... - this target might include its own product.`
+
+Ensure that the Copy Files phase for the executable is copying
+the executable, and not the app bundle (the product). See the
+*App Bundle Configuration* section.
+
+![Copy into Executables](tutorial/xcode-copy-files-swifthaskell-executable.png)
+
+### Running the app fails with `dyld: Library not loaded: @rpath/libswiftAppKit.dylib`
+
+Ensure that **Always Embed Swift Standard Libraries** is set
+to **Yes** on the app target, as described in *App Bundle
+Configuration*.
+
+![Always Embed Swift Standard Libraries: Yes](tutorial/xcode-embed-swift-standard-libs.png)
