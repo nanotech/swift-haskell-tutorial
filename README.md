@@ -285,6 +285,12 @@ executable SwiftHaskell
   executable where the dynamic linker should look for shared
   libraries.
 
+See [the Flag Reference in the GHC Users'
+Guide][ghc-guide-flags] and [`man 1 ld`][man-ld] for more details.
+
+[ghc-guide-flags]: https://downloads.haskell.org/~ghc/8.0.2/docs/html/users_guide/flags.html
+[man-ld]: x-man-page://1/ld
+
 ## Starting Cocoa
 
 Because Haskell has control over the program's entry point
@@ -369,8 +375,8 @@ In order for the framework to be able to link to symbols in the
 Haskell executable, we need to tell the linker to leave symbols
 undefined and have them be resolved at runtime.
 
-Add `-undefined dynamic_lookup` to the framework's **Other
-Linker Flags** setting.
+Add [`-undefined dynamic_lookup`][man-ld] to the framework's
+**Other Linker Flags** setting.
 
 Be aware that this means that link errors will occur at runtime
 instead of at link time. Also note that the framework linking
