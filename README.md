@@ -147,7 +147,9 @@ create a symlink to the built executable's location for later.
 #!/usr/bin/env bash
 set -eu
 
+# Change EXECUTABLE_NAME to the name of your Haskell executable.
 EXECUTABLE_NAME=SwiftHaskell
+
 DIST_DIR="$(stack path --dist-dir)"
 GHC_VERSION="$(stack exec -- ghc --numeric-version)"
 GHC_LIB_DIR="$(stack path --compiler-bin)/../lib/ghc-$GHC_VERSION"
@@ -170,12 +172,13 @@ module_map="${module_map}    export *${NL}"
 module_map="${module_map}}"
 echo "${module_map}" > "${STUB_MODULE_MAP}"
 
-# Symlink to the current GHC's header directory from a more
-# convenient place for Xcode to find.
+# Symlink to the current GHC's header directory so we can add it
+# to Xcode's include path as $(PROJECT_DIR)/build/ghc/include.
 mkdir -p build/ghc
 ln -sf "${GHC_LIB_DIR}/include" build/ghc/
 
-# Symlink to the Haskell executable for Xcode.
+# Symlink to the Haskell executable so we can easily drag it
+# into Xcode to use as the executable for the app bundle.
 ln -sf "../${DIST_DIR}/build/${EXECUTABLE_NAME}/${EXECUTABLE_NAME}" build/
 ```
 
