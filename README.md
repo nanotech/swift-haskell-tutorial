@@ -201,21 +201,55 @@ Text marked as `{}` will vary.
 
 ## Converting the Swift App to a Framework
 
-Create a new Cocoa Framework target in the Xcode project
-named SwiftAppLibrary, then change the Target Membership of
-`AppDelegate.swift` and `MainMenu.xib` to only SwiftAppLibrary
-in Xcode's File Inspector in the right sidebar:
+Create a new Cocoa Framework target in the Xcode project,
+
+![Select the Cocoa Framework template](tutorial/xcode-cocoa-framework-template-icon.png)
+
+with Swift as the default language.
+
+![Select Swift as the default language](tutorial/xcode-create-project-language-swift.png)
+
+Name the framework SwiftAppLibrary.
+
+### Framework Configuration
+
+To move over our application code and UI, change the Target
+Membership of `AppDelegate.swift` and `MainMenu.xib` in Xcode's
+File Inspector in the right sidebar so that they are only
+included in SwiftAppLibrary:
 
 ![Target Membership](tutorial/xcode-target-membership.png)
 
-In the new framework's build settings, set **Always Embed Swift
-Standard Libraries** to **Yes**.
+Xcode will place the built framework in a temporary directory
+(`~/Library/Developer/Xcode/DerivedData/`) with an unpredictable
+subpath. So that Cabal will be able to find the framework for
+linking, add a new **Run Script** build phase to create a
+symlink to the built framework in `build/`:
+
+```sh
+set -u
+ln -sf "${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}" "${PROJECT_DIR}/build/"
+```
+
+### App Bundle Configuration
 
 Drag the `SwiftHaskell` executable we built previously with
 Stack into Xcode from the `build/` directory that we symlinked
 it into, but do not add it to any targets when prompted:
 
 ![The SwiftHaskell executable in Xcode](tutorial/xcode-files-swifthaskell-executable.png)
+
+When Xcode creates Swift frameworks, it expects that the
+application that links the framework will include the Swift
+standard libraries. Xcode automatically adds these libraries to
+Swift applications. Since our application executable is built
+with Haskell and not Swift, we'll need to explicitly tell Xcode
+to include the Swift standard libraries in our application.
+
+In the app target's Build Settings tab, set **Always Embed Swift
+Standard Libraries** to **Yes**:
+
+![Always Embed Swift Standard Libraries: Yes](tutorial/xcode-embed-swift-standard-libs.png)
 
 In the SwiftHaskell app target's Build Phases, remove the
 **Compile Sources** and **Link Binary With Libraries**
@@ -227,14 +261,6 @@ directory:
 
 ![Copy into Executables](tutorial/xcode-copy-files-swifthaskell-executable.png)
 
-Finally, in the SwiftAppLibrary framework target's Build Phases,
-add a new **Run Script** phase to create a symlink to the built
-framework for us to link to from Cabal:
-
-```sh
-set -u
-ln -sf "${BUILT_PRODUCTS_DIR}/${FULL_PRODUCT_NAME}" "${PROJECT_DIR}/build/"
-```
 
 Build the SwiftAppLibrary framework in Xcode to prepare for the
 next sections.
