@@ -1,5 +1,13 @@
 # Integrating Haskell with Swift Mac Apps
 
+In this tutorial, we'll create a Mac app using Swift and Xcode
+to build the UI, and Haskell to implement backend logic.
+
+A basic familiarity with Haskell, Swift, Objective-C, C, Xcode,
+and shell scripting will be assumed.
+
+## Project Setup
+
 To start, create a new Cocoa Application Xcode project
 
 ![Select the Cocoa app template](tutorial/xcode-cocoa-template-icon.png)
@@ -8,8 +16,10 @@ with Swift as the default language.
 
 ![Select Swift as the default language](tutorial/xcode-create-project-language-swift.png)
 
-Then `cd` into the directory with the `.xcodeproj` and create a
-new stack project:
+Name the project SwiftHaskell.
+
+`cd` into the directory with the `.xcodeproj` and create a new
+stack project:
 
 ```sh
 $ cd SwiftHaskell
