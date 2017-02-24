@@ -189,6 +189,16 @@ something other than SwiftHaskell.
 Save the script as `link-deps.sh`, run `stack build`, and then
 run `bash link-deps.sh` to prepare for the next section.
 
+Running the script will create
+`SwiftHaskell/include/module.modulemap` and two symlinks in
+the project's `build/` directory:
+
+- `SwiftHaskell` `-> ../.stack-work/dist/{arch}/Cabal-{version}/build/SwiftHaskell/SwiftHaskell`
+- `ghc`
+    - `include` `-> ~/.stack/programs/{arch}/ghc-{version}/bin/../lib/ghc-{version}/include`
+
+Text marked as `{}` will vary.
+
 ## Converting the Swift App to a Framework
 
 Create a new Cocoa Framework target in the Xcode project
