@@ -200,8 +200,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				BFABC45A1E4C1DD1006036C6 /* SwiftAppLibrary */,
 				BFABC4D61E4D781D006036C6 /* SwiftHaskell */,
+				BFABC45A1E4C1DD1006036C6 /* SwiftAppLibrary */,
 			);
 		};
 /* End PBXProject section */
