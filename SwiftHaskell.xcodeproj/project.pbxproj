@@ -78,8 +78,8 @@
 		BFABC4511E4C1DD1006036C6 = {
 			isa = PBXGroup;
 			children = (
-				BFABC45D1E4C1DD1006036C6 /* SwiftAppLibrary */,
 				BFABC4D81E4D781D006036C6 /* SwiftHaskell */,
+				BFABC45D1E4C1DD1006036C6 /* SwiftAppLibrary */,
 				BFABC45C1E4C1DD1006036C6 /* Products */,
 			);
 			sourceTree = "<group>";
