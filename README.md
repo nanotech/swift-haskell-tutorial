@@ -237,6 +237,12 @@ included in SwiftAppLibrary:
 
 ![Target Membership](tutorial/xcode-target-membership.png)
 
+In `AppDelegate.swift`, remove the `@NSApplicationMain`
+attribute from the `AppDelegate` class, as we don't want an
+auto-generated `main` function in our framework. We will
+implement an equivalent way to start Cocoa later, to be called
+from the Haskell executable's `main`.
+
 Xcode will place the built framework in a temporary directory
 (`~/Library/Developer/Xcode/DerivedData/`) with an unpredictable
 subpath. So that Cabal will be able to find the framework for
