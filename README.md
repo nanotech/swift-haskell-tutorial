@@ -246,8 +246,11 @@ from the Haskell executable's `main`.
 Xcode will place the built framework in a temporary directory
 (`~/Library/Developer/Xcode/DerivedData/`) with an unpredictable
 subpath. So that Cabal will be able to find the framework for
-linking, add a new **Run Script** build phase to create a
-symlink to the built framework in `build/`:
+linking, add a new **Run Script** build phase
+
+![New Run Script Phase](tutorial/xcode-new-framework-run-script-phase.png)
+
+that creates a symlink to the built framework in `build/`:
 
 ```sh
 set -u
