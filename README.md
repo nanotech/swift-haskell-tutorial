@@ -386,9 +386,10 @@ main = do
 main run loop. Use `Control.Concurrent.forkIO` before calling
 `runNSApplication` to run other tasks as needed.
 
-Run `stack build`, and build and run the `SwiftHaskell` app
-target in Xcode to launch the app and see the default window
-from `MainMenu.xib`:
+Build the `SwiftHaskellLibrary` framework in Xcode, then `stack
+build`, and then finally build and run the `SwiftHaskell`
+app target to launch the app and see the default window from
+`MainMenu.xib`:
 
 ![A blank window](tutorial/empty-app.png)
 
