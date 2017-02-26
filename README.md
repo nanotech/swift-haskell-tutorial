@@ -478,17 +478,32 @@ Import the module we defined in our `module.modulemap`,
 import SwiftHaskell
 ```
 
-Add a new label to the window in `MainMenu.xib` for us to write
-the result of our Haskell function `square` into, and add it as
-an `@IBOutlet` to the `AppDelegate`:
+Let's add a new label to the window for us to write the result
+of our Haskell function `square` into. Open `MainMenu.xib` and
+select the window object in the left sidebar to bring it into
+view. Then drag in a label from the object library in the right
+sidebar into the window:
+
+![Add a label](tutorial/xcode-ib-add-label.png)
+
+Now option-click on `AppDelegate.swift` in the file list to open
+it in an assistant editor. Holding the control key, drag the
+label from the window into the `AppDelegate` class to add and
+connect a new `@IBOutlet`:
+
+![Add and connect the label outlet](tutorial/xcode-ib-add-label-outlet.png)
+
+![Name the outlet](tutorial/xcode-ib-label-outlet-dialog.png)
+
+Adding the outlet will add a new property to the `AppDelegate`:
 
 ```swift
 @IBOutlet weak var label: NSTextField!
 ```
 
-We already have our Haskell library's header imported, so we
-can just call the exported `square` function. Add this to
-`applicationDidFinishLaunching`:
+With the `SwiftHaskell` module imported and a label connected,
+let's call `square` and display its result in the label. Add
+this to `applicationDidFinishLaunching`:
 
 ```swift
 label.stringValue = "\(square(5))"
