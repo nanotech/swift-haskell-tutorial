@@ -518,6 +518,14 @@ Running the app,
 
 ![5 squared](tutorial/squared.png)
 
+If the build fails with `Use of unresolved identifier 'square'`,
+perform a full clean with the *Product » Clean Build Folder...*
+⌥⇧⌘K menu command and then rebuild. (Hold ⌥ option to reveal
+the menu item.) This appears to be a bug with Xcode (version
+8.2 as of writing) caching some intermediate state from before
+the `SwiftHaskell` module was fully configured, and should not
+occur in future builds.
+
 ## Passing Complex Data Types
 
 ### Bytes
@@ -891,3 +899,11 @@ to **Yes** on the app target, as described in *App Bundle
 Configuration*.
 
 ![Always Embed Swift Standard Libraries: Yes](tutorial/xcode-embed-swift-standard-libs.png)
+
+### Building in Xcode fails with `Use of unresolved identifier 'square'`
+
+If the module is certainly imported, this is probably from Xcode
+incorrectly retaining an expired cache for the `SwiftHaskell`
+module. Perform a full clean with the *Product » Clean Build
+Folder...* ⌥⇧⌘K menu command and then rebuild. (Hold ⌥ option to
+reveal the menu item.)
